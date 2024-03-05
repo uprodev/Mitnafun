@@ -1160,7 +1160,10 @@ footer{
 /*-------------------------PRODUCT-PAGE----------------------------*/
 .product-info{
   position: relative;
-  padding: 150px 0 50px;
+  padding: 175px 0 50px;
+  .mob-title{
+    display: none;
+  }
   .bg{
     top: 100px;
     img{
@@ -1175,13 +1178,17 @@ footer{
     flex-wrap: wrap;
   }
   .slider-wrap{
-    width: 48%;
+    width: 48.5%;
     border: 1px solid rgba(227, 208, 195, 1);
     border-radius: 20px;
     overflow: hidden;
   }
   .text-wrap{
-    width: 48%;
+    width: 48.5%;
+    p{
+      width: 580px;
+      max-width: 100%;
+    }
   }
   .product-btn{
     border: 1px solid rgba(227, 208, 195, 1);
@@ -1197,9 +1204,205 @@ footer{
     }
   }
   .product-prev{
+    right: 20px;
     img{
       transform: scale(-1,1);
     }
   }
+  .product-next{
+    left: 20px;
+  }
+  .swiper-slide{
+    min-height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    img{
+      transition: all .4s ease;
+    }
+    a:hover{
+      img{
+        transform: scale(1.03);
+      }
+    }
+  }
+  h1{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 71px;
+    letter-spacing: 0em;
+    color: $blue;
+    margin-bottom: 37px;
+  }
+  .list-info{
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      margin: 0 0 17px 15px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21px;
+      letter-spacing: 0em;
+    }
+  }
+  .btn-wrap{
+    margin-bottom: 36px;
+  }
+  .sub-title{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: right;
+    margin-bottom: 18px;
+    font-family: $font1;
+  }
+}
+
+.item-2x-text{
+  padding: 21px 0 50px;
+  .title-h3{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    grid-gap: 40px 40px;
+  }
+  .item{
+    width: 48.5%;
+    border: 1px solid rgba(226, 230, 243, 1);
+    min-height: 157px;
+    padding: 15px 27px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    background: rgba(255, 247, 221, 1);
+    .title{
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21px;
+      letter-spacing: 0em;
+      margin-bottom: 20px;
+    }
+    .title:last-child{
+      margin-bottom: 0;
+    }
+    p{
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0em;
+    }
+  }
+}
+.title-border-block{
+  margin-top: 28px;
+  position: relative;
+  padding-bottom: 135px;
+  .content-width{
+    padding-top: 80px;
+    border-top: 1px solid rgba(227, 223, 194, 1);
+  }
+  .title-h3{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .bg{
+    img{
+      position: absolute;
+      top: 50px;
+      right: 0;
+    }
+    .img-2, .img-3{
+      display: none;
+    }
+  }
+  .content{
+    width: 970px;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 2px solid rgba(97, 116, 188, 1);
+    padding: 28px 61px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    align-items: center;
+    .text{
+      width: 50.5%;
+      p{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0em;
+        margin-bottom: 13px;
+        a{
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 21px;
+          letter-spacing: 0em;
+          color: rgba(227, 162, 58, 1);
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+      p:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .img-wrap{
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    figure{
+      width: 78px;
+    }
+    .wrap{
+      width: calc(100% - 90px);
+      p{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0em;
+        margin-bottom: 13px;
+        a{
+          font-family:$font2;
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 36px;
+          letter-spacing: 0em;
+          color: $blue;
+          &:hover{
+            color: rgba(227, 162, 58, 1);
+          }
+        }
+      }
+      p:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.product-info .swiper-slide img{
+  max-width: 100%;
+  max-height: 100%;
 }
 /*------------------------END-PRODUCT-PAGE----------------------------*/

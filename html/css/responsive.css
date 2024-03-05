@@ -146,7 +146,10 @@
     right: 0; }
 
   .category .content {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: repeat(3, 1fr); }
+
+  .item-2x-text .content {
+    grid-gap: 20px; } }
 @media (max-width: 991px) {
   .content-width {
     width: 720px; }
@@ -239,7 +242,10 @@
     margin-bottom: 20px; }
 
   .category .content {
-    grid-template-columns: repeat(2, 1fr); } }
+    grid-template-columns: repeat(2, 1fr); }
+
+  .title-border-block .img-wrap .wrap p a {
+    font-size: 24px; } }
 @media (max-width: 767px) {
   .content-width {
     width: 540px; }
@@ -418,7 +424,91 @@
     padding: 10px 70px 10px 80px; }
 
   .accordion-panel .wrap {
-    padding: 7px 70px 29px 80px; } }
+    padding: 7px 70px 29px 80px; }
+
+  .product-info .slider-wrap {
+    width: 100%;
+    margin-bottom: 30px; }
+
+  .product-info .text-wrap {
+    width: 100%; }
+    .product-info .text-wrap h1 {
+      display: none; }
+
+  .product-info .bg {
+    display: none; }
+
+  .product-info h1 {
+    font-size: 45px;
+    line-height: 1.2; }
+
+  .product-info .mob-title {
+    width: 100%;
+    margin-bottom: 30px;
+    display: block; }
+    .product-info .mob-title .title {
+      font-size: 45px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0em;
+      text-align: center;
+      color: #546dcd; }
+
+  .product-info .list-info {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .product-info .list-info li {
+      margin: 0 5px; }
+
+  .product-info .btn-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+
+  .product-info .sub-title {
+    text-align: center; }
+
+  .product-info .text-wrap p {
+    text-align: center; }
+
+  .item-2x-text .item {
+    width: 100%; }
+
+  .title-border-block .bg img {
+    display: none; }
+
+  .title-border-block .bg .img-2 {
+    display: inline-block;
+    top: 0; }
+
+  .title-border-block .bg .img-3 {
+    display: inline-block;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    top: auto; }
+
+  .title-border-block .content .text {
+    width: 100%;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2; }
+
+  .title-border-block .content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+
+  .title-border-block .img-wrap {
+    width: 275px;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    margin-bottom: 20px; } }
 @media (max-width: 575px) {
   .content-width {
     width: 100%;
@@ -767,6 +857,82 @@
 
   .accordion-panel .wrap p {
     font-size: 16px;
-    line-height: 22px; } }
+    line-height: 22px; }
+
+  .product-info {
+    padding: 123px 0 50px; }
+
+  .product-info .mob-title {
+    margin-bottom: -7px; }
+
+  .product-info .slider-wrap {
+    margin: 0 35px 25px;
+    width: calc(100% - 70px); }
+
+  .product-info .swiper-slide {
+    min-height: 61vw; }
+
+  .product-info .product-btn {
+    width: 24px;
+    height: 24px; }
+    .product-info .product-btn img {
+      width: 8px; }
+
+  .product-info .list-info {
+    margin-bottom: 23px; }
+
+  .product-info .list-info li, .product-info .sub-title, body, .item-2x-text .item .title {
+    font-size: 16px;
+    line-height: 20px; }
+
+  .product-info .btn-wrap {
+    margin-bottom: 25px; }
+
+  .product-info .text-wrap {
+    padding: 0 30px; }
+
+  .item-2x-text .title-h3, .title-border-block .title-h3 {
+    font-size: 24px;
+    line-height: 28px; }
+
+  .item-2x-text {
+    padding: 38px 0 12px; }
+
+  .item-2x-text .content {
+    padding: 0 20px; }
+
+  .item-2x-text .item p {
+    font-size: 16px;
+    line-height: 20px; }
+
+  .item-2x-text .item {
+    min-height: inherit;
+    padding: 24px 27px; }
+
+  .title-border-block .content-width {
+    padding: 40px 0 0;
+    margin: 0 20px;
+    width: calc(100% - 40px); }
+
+  .title-border-block .content {
+    padding: 30px 22px; }
+
+  .title-border-block .img-wrap .wrap p {
+    margin-bottom: 9px; }
+
+  .title-border-block .img-wrap {
+    margin-bottom: 34px; }
+
+  .title-border-block .content .text p {
+    font-size: 16px;
+    line-height: 20px; }
+    .title-border-block .content .text p a {
+      font-size: 16px;
+      line-height: 20px; }
+
+  .title-border-block {
+    padding-bottom: 97px; }
+    .title-border-block .bg {
+      bottom: -50px; } }
 
 /*# sourceMappingURL=responsive.css.map */
