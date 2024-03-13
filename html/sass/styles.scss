@@ -2594,4 +2594,21 @@ footer{
     display: none;
   }
 }
+
+
+/**/
+.top-line .top-menu ul li a:hover{
+  opacity: 0.7;
+}
+
+.title-item-4x{
+  z-index: 10;
+}
+
+.title-item-2x .bg{
+  top: -20px;
+}
+.category{
+  overflow-x: hidden;
+}
 /*---------------------END-ORDER-PAGE----------------------------*/
