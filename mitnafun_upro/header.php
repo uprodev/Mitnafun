@@ -23,7 +23,7 @@
             </a>
           </div>
         <?php endif ?>
-        
+
         <div class="top-menu">
 
           <?php wp_nav_menu( array(
@@ -38,7 +38,7 @@
             </a>
           </div>
           <div class="btn-wrap">
-            <a href="#"><img src="<?= get_stylesheet_directory_uri() ?>/img/icon-1.svg" alt=""></a>
+            <a href="#check-popup" class="fancybox-check"><img src="<?= get_stylesheet_directory_uri() ?>/img/icon-1.svg" alt=""></a>
           </div>
         </div>
       </div>
@@ -72,5 +72,5 @@
       </nav>
     </div>
   </div>
-  
+
   <main>
