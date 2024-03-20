@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-do_action( 'woocommerce_before_checkout_form', $checkout );
+//
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
 if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
@@ -29,38 +29,124 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
-<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+<section class="checkout">
+    <div class="content-width">
+        <ul class="breadcrumb">
+            <li><a href="index.html"><img src="<?= get_template_directory_uri() ?>/img/icon-9.svg" alt="">חזרה</a></li>
+        </ul>
+        <h1>ביצוע הזמנה</h1>
+        <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>">
+            <div class="content">
+                <div class="main">
+                    <h3 class="title">פרטים</h3>
+                    <div class="form-wrap form-default">
+                        <div class="input-wrap">
+                            <input type="text" name="billing_first_name" id="name" placeholder="Name" required>
+                            <label for="name">שם פרטי *</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="text" name="billing_last_name" id="surname" placeholder="Surname" required>
+                            <label for="surname">שם משפחה *</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="email" name="billing_email" id="email" placeholder="example@gmail.com" required>
+                            <label for="email">שם משפחה *</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="tel" name="billing_phone" id="tel" placeholder="+972 000 000 00 00" required class="tel">
+                            <label for="tel">מספר טלפון *</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="number" name="billing_guests" id="number" placeholder="10" required>
+                            <label for="number">כמות המשתתפים *</label>
+                        </div>
+                        <div class="input-wrap-checked">
+                            <input type="checkbox" name="billing_" id="check" checked value="1">
+                            <label for="check">הנני מאשר כי קיבלתי לידי את התנאים הכלליים המצורפים על נספחיהם, אלה הוסברו לי ואני מסכים לתוכנם</label>
+                        </div>
+                    </div>
 
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
 
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-		<div class="col2-set" id="customer_details">
-			<div class="col-1">
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			</div>
 
-			<div class="col-2">
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-			</div>
-		</div>
+                </div>
+                <div class="aside">
+                    <h3 class="title">פרטי השירות</h3>
 
-		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+                    <?php
+                    do_action( 'woocommerce_before_mini_cart_contents' );
 
-	<?php endif; ?>
-	
-	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-	
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-	
-	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-	</div>
+                    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+                        $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+                        $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
-	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+                        if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                            /**
+                             * This filter is documented in woocommerce/templates/cart/cart.php.
+                             *
+                             * @since 2.1.0
+                             */
+                            $product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+                            $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+                            $product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+                            $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+                            ?>
 
-</form>
+                            <div class="item">
+                            <figure>
+                                <?php if ( empty( $product_permalink ) ) : ?>
+                                    <?php echo $thumbnail  ; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                <?php else : ?>
+                                    <a href="<?php echo esc_url( $product_permalink ); ?>">
+                                        <?php echo $thumbnail ; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                    </a>
+                                <?php endif; ?>
+                            </figure>
+                            <div class="text">
+                                <p>27 בינואר 2024 בשעה 20:00</p>
+                                <p>הסדנה 1, כפר סבא</p>
+                                <p>24 שע'</p>
+                                <div class="line"></div>
+                                <ul>
+                                    <li><p>פרטי התשלום</p></li>
+                                    <li>
+                                        <p>סך הכל</p>
+                                        <p><?php wc_cart_totals_order_total_html(); ?></p>
+                                    </li>
+                                </ul>
 
-<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+                                <div class="link-wrap">
+                                    <a href="#" class="show-text"><img src="<?= get_template_directory_uri() ?>/img/icon-17.svg" alt=""> מדיניות ביטולים</a>
+                                    <div class="info-text">
+                                        <p> אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php } ?>
+                    <?php } ?>
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="content">
+                <div class="main">
+                    <h3 class="title">Shipping</h3>
+                    <?php do_action( 'woocommerce_checkout_shipping' ); ?>
+                </div>
+                <div class="aside">
+                    <h3 class="title">Payment</h3>
+                    <?php woocommerce_checkout_payment(); ?>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</section>

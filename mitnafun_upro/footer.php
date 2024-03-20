@@ -115,30 +115,8 @@
         <div class="content">
 
             <?php woocommerce_mini_cart() ?>
-            <div class="item">
-                <figure>
-                    <a href="#">
-                        <img src="<?= get_template_directory_uri() ?>/img/img-7.jpg" alt="">
-                    </a>
-                </figure>
-                <div class="text">
-                    <div class="info">
-                        <p class="name"><a href="#">מכונת סוכר</a></p>
-                        <p>24 שע'</p>
-                    </div>
-                    <div class="cost">
-                        <p>550 ₪</p>
-                    </div>
-                    <div class="delete">
-                        <a href="#" class="delete-item">
-                            <img src="<?= get_template_directory_uri() ?>/img/del.svg" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-wrap">
-                <a href="#" class="btn-default btn-blue btn-mini">להזמנה</a>
-            </div>
+
+
         </div>
     </div>
 </div>

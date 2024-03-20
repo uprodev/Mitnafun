@@ -1,5 +1,7 @@
 <?php
 
+include 'inc/checkout.php';
+
 // show_admin_bar( false );
 
 add_action('wp_enqueue_scripts', 'load_style_script');
@@ -100,3 +102,22 @@ function my_acf_admin_head() {
     </script>
     <?php
 }
+
+
+function my_output_images( $prepend_url, $separator = ',', $image_urls ) {
+    // Turn the image URLs into an array.
+    $image_urls = explode( $separator, $image_urls );
+
+    // Remove empty entries.
+    $image_urls = array_filter( $image_urls );
+
+    // Prepend the URL to every image.
+    foreach ( $image_urls as $key => $url ) {
+        $image_urls[ $key ] = $prepend_url . trim( $url );
+    }
+
+    // Return a string of image URLs with the proper separator.
+    return implode( $separator, $image_urls );
+}
+
+add_filter('get_the_archive_title_prefix','__return_false');

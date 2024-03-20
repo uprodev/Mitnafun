@@ -35,21 +35,44 @@ $wrapper_classes   = apply_filters(
 		'images',
 	)
 );
+
+$attachment_ids = $product->get_gallery_image_ids();
+
+
+
+
 ?>
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<div class="woocommerce-product-gallery__wrapper">
-		<?php
-		if ( $post_thumbnail_id ) {
-			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
-		} else {
-			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= '</div>';
-		}
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+<div class="slider-wrap">
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
+            <?php if ( $post_thumbnail_id ) { ?>
+            <div class="swiper-slide">
+                <a href="<?= get_the_post_thumbnail_url(get_the_id(), 'full') ?>" data-fancybox="gallery">
+                    <?= $product->get_image('large')  ?>
+                </a>
+            </div>
+            <?php } ?>
+            <?php
+            if ( $attachment_ids && $product->get_image_id() ) {
+                foreach ( $attachment_ids as $attachment_id ) {
+                   ?>
+                    <div class="swiper-slide">
+                        <a href="<?= wp_get_attachment_image_url($attachment_id, 'full') ?>" data-fancybox="gallery">
+                            <img src="<?= wp_get_attachment_image_url($attachment_id, 'large') ?>" alt="">
+                        </a>
+                    </div>
+                    <?php
+                     // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+                }
+            }?>
 
-		do_action( 'woocommerce_product_thumbnails' );
-		?>
-	</div>
+        </div>
+        <div class="swiper-button-next product-next product-btn"><img src="<?= get_template_directory_uri() ?>/img/icon-7.svg" alt=""></div>
+        <div class="swiper-button-prev product-prev product-btn"><img src="<?= get_template_directory_uri() ?>/img/icon-7.svg" alt=""></div>
+    </div>
 </div>
+
+
+
+

@@ -19,26 +19,33 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 
-/**
- * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
- */
-do_action( 'woocommerce_before_main_content' );
+
 
 ?>
 
 
     <section class="category">
         <div class="content-width">
-            <h1>מתנפחים להשכרה</h1>
+            <h1><?php the_archive_title('', false)        ?></h1>
             <div action="#">
                 <div class="select-line">
                     <div class="wrap">
-                        <?= do_shortcode('[br_filter_single filter_id=131]')   ?>
 
+
+                        <div class="select-line">
+                            <div class="wrap">
+                                <?php $terms = get_terms(['taxonomy' => 'product_cat']);
+
+                                foreach ($terms as $term) { ?>
+                                <div class="input-wrap-checkbox">
+<label>
+                                    <a class="<?= get_queried_object_id() == $term->term_id ? 'selected' : ''  ?>" href="<?= get_term_link($term->term_id, 'product_cat') ?>"><?= $term->name ?></a>
+</label>    </div>
+
+                                <?php } ?>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="content">
@@ -59,7 +66,7 @@ do_action( 'woocommerce_before_main_content' );
 
                 </div>
                 <div class="link-wrap">
-                    <a href="#"><img src="<?= get_template_directory_uri() ?>/img/icon-5.svg" alt="">טען עוד</a>
+                    <?php woocommerce_pagination() ?>
                 </div>
             </div>
         </div>

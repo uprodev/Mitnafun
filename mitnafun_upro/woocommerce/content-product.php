@@ -28,7 +28,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 <div class="item">
     <figure>
         <a href="<?php the_permalink() ?>">
-            <img src="<?= get_template_directory_uri() ?>/img/img-5-11.jpg" alt="">
+            <?= $product->get_image('large')  ?>
         </a>
     </figure>
     <div class="text">
@@ -38,7 +38,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
             <li>24 שע'</li>
         </ul>
         <div class="btn-wrap">
-            <a href="#" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
+            <a href="<?php the_permalink() ?>" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
         </div>
     </div>
 </div>
