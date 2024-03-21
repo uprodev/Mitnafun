@@ -13,15 +13,22 @@ function quadlayers_remove_checkout_fields( $fields ) {
     unset($fields['billing']['billing_postcode']);
     unset($fields['billing']['billing_state']);
     unset($fields['order']['order_comments']);
+    unset($fields['shipping']['shipping_first_name']);
+    unset($fields['shipping']['shipping_last_name']);
     unset($fields['shipping']['shipping_company']);
-    unset($fields['shipping']['shipping_address_1']);
-    unset($fields['shipping']['shipping_address_2']);
-    unset($fields['shipping']['shipping_city']);
+    unset($fields['shipping']['shipping_country']);
+  //  unset($fields['shipping']['shipping_address_1']);
+ //   unset($fields['shipping']['shipping_address_2']);
+  //  unset($fields['shipping']['shipping_city']);
     unset($fields['shipping']['shipping_postcode']);
     unset($fields['shipping']['shipping_state']);
+
+    $fields['shipping_address_1']['required'] = false;
     return $fields;
 
 }
+
+
 
 /* add custom checkout field */
 //add_action( 'wc_new_fields', 'add_custom_checkout_field' );
@@ -106,3 +113,11 @@ function show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $e
 
 remove_action('woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20);
 add_action('woocommerce_payment_placement', 'woocommerce_checkout_payment', 20);
+
+
+add_filter( 'woocommerce_form_field', 'bbloomer_remove_optional_checkout_fields', 9999 );
+
+function bbloomer_remove_optional_checkout_fields( $field ) {
+    $field = str_replace( '&nbsp;<span class="optional">(אופציונלי)</span>', '', $field );
+    return $field;
+}

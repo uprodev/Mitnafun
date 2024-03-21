@@ -77,56 +77,16 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     do_action( 'woocommerce_before_mini_cart_contents' );
 
 
-                    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-                        $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-                        $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+                    woocommerce_mini_cart();
 
-                        if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-                            /**
-                             * This filter is documented in woocommerce/templates/cart/cart.php.
-                             *
-                             * @since 2.1.0
-                             */
-                            $product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
-                            $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-                            $product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-                            $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-                            ?>
+                    ?>
 
-                            <div class="item">
-                            <figure>
-                                <?php if ( empty( $product_permalink ) ) : ?>
-                                    <?php echo $thumbnail  ; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                <?php else : ?>
-                                    <a href="<?php echo esc_url( $product_permalink ); ?>">
-                                        <?php echo $thumbnail ; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                    </a>
-                                <?php endif; ?>
-                            </figure>
-                            <div class="text">
-                                <p>27 בינואר 2024 בשעה 20:00</p>
-                                <p>הסדנה 1, כפר סבא</p>
-                                <p>24 שע'</p>
-                                <div class="line"></div>
-                                <ul>
-                                    <li><p>פרטי התשלום</p></li>
-                                    <li>
-                                        <p>סך הכל</p>
-                                        <p><?php wc_cart_totals_order_total_html(); ?></p>
-                                    </li>
-                                </ul>
-
-                                <div class="link-wrap">
-                                    <a href="#" class="show-text"><img src="<?= get_template_directory_uri() ?>/img/icon-17.svg" alt=""> מדיניות ביטולים</a>
-                                    <div class="info-text">
-                                        <p> אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="link-wrap">
+                        <a href="#" class="show-text"><img src="<?= get_template_directory_uri() ?>/img/icon-17.svg" alt=""> מדיניות ביטולים</a>
+                        <div class="info-text">
+                            <p> אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם אלה הוסברו לי ואני מסכים לתוכנם</p>
                         </div>
-
-                        <?php } ?>
-                    <?php } ?>
+                    </div>
 
 
 
@@ -137,7 +97,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
             <div class="content">
                 <div class="main">
-                    <h3 class="title">Shipping</h3>
+                    <h3 class="title">משלוח</h3>
                     <?php do_action( 'woocommerce_checkout_shipping' ); ?>
                 </div>
                 <div class="aside">

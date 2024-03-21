@@ -30,7 +30,7 @@ get_header( 'shop' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
 
- 
+
 
 <?php
 get_footer( 'shop' );
