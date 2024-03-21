@@ -91,9 +91,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 
 
+        <?php if (!is_checkout()) { ?>
         <div class="btn-wrap">
             <a href="<?= get_permalink(12) ?>" class="btn-default btn-blue btn-mini">להזמנה</a>
         </div>
+        <?php } ?>
 
 <?php else : ?>
 

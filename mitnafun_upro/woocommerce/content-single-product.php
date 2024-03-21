@@ -33,7 +33,11 @@ if ( post_password_required() ) {
         <img src="<?= get_template_directory_uri() ?>/img/after-7.svg" alt="">
     </div>
     <div class="content-width">
+
+        <?php do_action( 'woocommerce_before_single_product' ); ?>
         <div class="content">
+
+
             <div class="mob-title">
                 <h2 class="title"><?php the_title() ?></h2>
             </div>
