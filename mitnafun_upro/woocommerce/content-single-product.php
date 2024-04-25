@@ -54,7 +54,7 @@ if ( post_password_required() ) {
                     <a href="?add-to-cart=<?= $product->get_id()  ?>" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
                 </div>
                 <h6 class="sub-title">תיאור המתקן:</h6>
-               <?php // the_content() ?>
+                <?php // the_content() ?>
                 <?= $product->get_short_description()  ?>
 
             </div>
@@ -62,43 +62,32 @@ if ( post_password_required() ) {
     </div>
 </section>
 
-<section class="item-2x-text">
-    <div class="content-width">
-        <h2 class="title-h3">פרטי המוצר</h2>
-        <div class="content">
-            <div class="item">
-                <h6 class="title">כמה ילדים באירוע?</h6>
-                <p>למתנפח ספיידרמן אנו ממליצים יחס של עד 15-20 ילדים באירוע,
-                    הילדים יתחלפו במהלך הזמן.</p>
-            </div>
-            <div class="item">
-                <h6 class="title">תיאור המתקן:</h6>
-                <p>פיידרמן במתקן מתנפח מהסרטים, המתקן כולל משטח קפיצה גדול במיוחד, טיפוס ומגלשה גבוהה. המנתפח עשוי בד חזק במיוחד, מסוגל להכיל מספר רב של ילדים ומתאים גם לאירועים גדולים.</p>
-            </div>
-            <div class="item">
-                <h6 class="title">שימו לב ! <br>
-                    - המתקן גדול לא נכנס לרכב פרטי ולכן צריך להגיע עם טנדר או עגלה .</h6>
-            </div>
-            <div class="item">
-                <h6 class="title">לאיזה גילאים מתאים?</h6>
-                <p>לילדים עד גיל 12</p>
-            </div>
-            <div class="item">
-                <h6 class="title">מידות:</h6>
-                <ul>
-                    <li>
-                        <p>אורך- 5.0 מטרים</p>
-                        <p>רוחב-5.0 מטרים</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="item">
-                <h6 class="title">כמה משתתפים יכולים להיות במתקן באותו הזמן?</h6>
-                <p>עד 10 ילדים, כמובן שמספר זה עשוי להשתנות בהתאם לגיל, לגודל ולפעילות הילדים.</p>
+<?php if(have_rows('products')): ?>
+
+    <section class="item-2x-text">
+        <div class="content-width">
+            <h2 class="title-h3">פרטי המוצר</h2>
+            <div class="content">
+
+                <?php while(have_rows('products')): the_row() ?>
+
+                    <div class="item">
+
+                        <?php if ($field = get_sub_field('title')): ?>
+                            <h6 class="title"><?= $field ?></h6>
+                        <?php endif ?>
+                        
+                        <?php the_sub_field('description') ?>
+                        
+                    </div>
+
+                <?php endwhile ?>
+
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+<?php endif ?>
 
 <section class="title-border-block">
     <div class="bg">
@@ -107,22 +96,46 @@ if ( post_password_required() ) {
         <img src="<?= get_template_directory_uri() ?>/img/after-10.svg" alt="" class="img-3">
     </div>
     <div class="content-width">
-        <h2 class="title-h3">מדיניות ביטולים</h2>
+
+        <?php if ($field = get_field('title_4', 'option')): ?>
+            <h2 class="title-h3"><?= $field ?></h2>
+        <?php endif ?>
+        
         <div class="content">
-            <div class="text">
-                <p>ביטול הזמנה ו/או השכרה של ציוד תעשה <a href="#">עד 72</a> <a href="#">שעות</a> לפני תקופת ההשכרה, ובלבד שניתן אישור על ידי מתנפחים ונהנים.
-                </p>
-                <p>
-                    למען הסר ספק, לא יוחזר תשלום בעת ביטול הזמנה או השכרה <a href="#">במסגרת 72</a> השעות לפני תקופת ההשכרה.</p>
-            </div>
+
+            <?php if ($field = get_field('text_4', 'option')): ?>
+                <div class="text"><?= $field ?></div>
+            <?php endif ?>
+
             <div class="img-wrap">
-                <figure>
-                    <img src="<?= get_template_directory_uri() ?>/img/icon-8.svg" alt="">
-                </figure>
-                <div class="wrap">
-                    <p>יש ליצור קשר בטלפון </p>
-                    <p><a href="tel:+0505544516">050-5544516</a></p>
-                </div>
+
+                <?php if ($field = get_field('icon_4', 'option')): ?>
+                    <figure>
+                        <?php if (pathinfo($field['url'])['extension'] == 'svg'): ?>
+                            <img src="<?= $field['url'] ?>">
+                        <?php else: ?>
+                            <?= wp_get_attachment_image($field['ID'], 'full') ?>
+                        <?php endif ?>
+                    </figure>
+                <?php endif ?>
+
+                <?php if ($field = get_field('phone_4', 'option')): ?>
+                    <div class="wrap">
+
+                        <?php if ($field['title']): ?>
+                            <p><?= $field['title'] ?></p>
+                        <?php endif ?>
+                        
+                        <?php if ($field['phone']): ?>
+                            <p>
+                                <a href="tel:+<?= preg_replace('/[^0-9]/', '', $field['phone']) ?>"><?= $field['phone'] ?></a>
+                            </p>
+                        <?php endif ?>
+                        
+
+                    </div>
+                <?php endif ?>
+
             </div>
         </div>
     </div>
